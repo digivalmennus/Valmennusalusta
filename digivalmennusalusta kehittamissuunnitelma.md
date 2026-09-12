@@ -13,7 +13,9 @@
 5. Asiakkaan palvelupolku (JHS 152, taso 3)
 6. Palvelupolun uimaratakaavio
 7. Työnkulku (JHS 152, taso 4)
-8. Yhteenveto ja seuraavat askeleet
+8. Sisällön teoriapohja ja pedagoginen eteneminen
+9. Benchmark: Live-säätiön digitaalinen työhönvalmennus
+10. Yhteenveto ja seuraavat askeleet
 
 ---
 
@@ -150,6 +152,8 @@ Näitä neljää kannattaa käyttää testinä myöhemmässä palvelupolku- ja p
 | **Prosessin omistaja** | Vastaa siitä, että prosessi tukee (ei korvaa) olemassa olevaa valmennuskäytäntöä; päättää sisällön tuotantoresursseista | — |
 
 **Huomio vastuunjaosta:** Taulukon "ei vastuussa" -sarake on tarkoituksella yhtä tärkeä kuin päävastuu-sarake — se tekee näkyväksi rajat, jotka ovat syntyneet aiemmista periaatepäätöksistä (esim. alusta ei tee suunnan valintaa, valmentaja ei ohjaa alustan käyttöä reaaliajassa).
+
+**Huomio valmentajan omista työvälineistä:** Valmentajalla voi olla käytössään myös muita, digivalmennusalustan ulkopuolisia työvälineitä (esim. UraPolku, ATS-tietoinen CV/hakemustyökalu), joita hän käyttää tausta-alueella kasvokkaisten tapaamisten tukena — esim. CV:n tai hakemuksen luonnostelussa yhdessä asiakkaan kanssa. Nämä eivät ole osa asiakkaan digialustanäkymää eivätkä osa tämän suunnitelman tietomallia — ne ovat valmentajan oma väline, samaan tapaan kuin GAS-lomake tai tapaamismuistiinpanot.
 
 ---
 
@@ -595,7 +599,174 @@ Kehittämissuunnitelman runko on siis tuotoslistan osalta valmis. Seuraava luont
 
 ---
 
-## 8. Yhteenveto ja seuraavat askeleet
+## 8. Sisällön teoriapohja ja pedagoginen eteneminen
+
+*Täydentää kehittämissuunnitelmaa kahdella asialla: mistä sisällön faktapohja tulee, ja miten eteneminen on pedagogisesti mielekästä ilman että se on ristiriidassa "ei pakotettua järjestystä" -periaatteen kanssa.*
+
+---
+
+### 1. Sisällön teoriapohja: kaksi eri lajia tietoa
+
+Tähän asti sisältömoduulien esimerkit (mockup, tietomalli) ovat olleet taito-/reflektiopainotteisia (CV, haastattelu, oma osaaminen). Näiden rinnalle tarvitaan toinen kerros: **ymmärrys omasta tilanteesta laajemmassa työmarkkinakontekstissa.** Tämä jakautuu kahteen, luonteeltaan eri tietolajiin:
+
+#### A. Pysyvä teoriapohja (ei vanhene)
+- Minäpystyvyys, toiveikkuus (goals–pathways–agency), työn merkityksellisyys (TMT/MEANWELL) — jo aiemmin sovitut ankkurit
+- Näiden ei tarvitse päivittyä usein; ne kuvaavat ilmiötä, ei tilaa
+
+#### B. Tilastopohjainen, vanheneva tieto — uusi kerros
+- **KEHA-keskuksen Työvoimabarometri** (ent. Ammattibarometri) — vuosittain päivitetty ennakointitieto työvoiman kysynnästä/tarjonnasta alueittain ja ammateittain
+- **KEHA-keskuksen Työllisyyskatsaus** — kuukausittainen katsaus työttömyyden ja avointen työpaikkojen kehityksestä
+- **Palta ry:n selvitykset osaamisen kohtaannosta** — työnantajapuolen näkökulma osaamisvajeisiin, erityisesti palvelualoilla
+- **Työmarkkinatorin "Työvoiman saatavuus ja kohtaanto" -raportti** — yhdistää TEM:n työnvälitystilastot, Tilastokeskuksen aineistot ja palkkatiedot toimialoittain/maakunnittain
+
+**Miksi tämä on oma kategoriansa, ei vain lisää sisältöä:** Ryhmä B vanhenee — vuoden vanha työvoimabarometri voi antaa väärän kuvan tilanteesta. Tämä on tekninen vaatimus, ei vain sisällöllinen huomio: tietomalliin (`tiedonhallinta.md` / `arkkitehtuuri.md`, `SISALTOMODUULI`-entiteetti) pitää lisätä kaksi kenttää:
+
+| Uusi kenttä | Tarkoitus |
+|---|---|
+| `lahde` | Mistä tieto on peräisin (esim. "KEHA-keskus, Työvoimabarometri 2026") — näytetään käyttäjälle, koska tilastotieto ilman lähdettä ei ole uskottavaa |
+| `voimassa_asti` / `paivitysvali` | Milloin sisältö pitää tarkistaa/päivittää — pysyvälle teorialle tyhjä, tilastosisällölle esim. "12 kk" |
+
+Ilman tätä kenttää riski on, että vanhentunut työmarkkinatieto jää alustalle huomaamatta — pahempi virhe kuin ettei sitä olisi lainkaan, koska vanhentunut tilastotieto voi ohjata asiakasta väärään suuntaan juuri siinä kohtaa kun hän luottaa alustaan eniten.
+
+**Päivitystahti ei ole sama kaikelle vanhenevalle tiedolle** — B-kerros (KEHA, Palta) päivittyy kuukausittain/vuosittain, C-kerros (megatrendit, ks. alla) muutaman vuoden välein. `voimassa_asti`-kenttä toimii molemmille, mutta arvo on eri suuruusluokkaa — tämä on syytä huomioida jos joskus rakennetaan automaattista "tarkista päivitys" -muistutusta sisällöntuottajalle.
+
+#### C. Hitaasti vanheneva muutosymmärrys — kolmas kerros
+
+Kahden edellisen lisäksi tarvitaan kolmas, väliin asettuva tietolaji: **ymmärrys laajemmista muutosvoimista**, jotka vaikuttavat sekä työmarkkinoihin että omaan osaamiseen — mutta jotka eivät vanhene yhtä nopeasti kuin B-kerroksen kuukausi-/vuositilastot.
+
+- **Sitran Megatrendit-katsaus** (uusin: Megatrendit 2026, edellinen 2023 — julkaistaan siis muutaman vuoden välein, ei vuosittain). Neljä keskeistä kehityskulkua vuoden 2026 katsauksessa: pitkäikäisten yhteiskunta, maailmanjärjestyksen murros, tekoälyn tuomat muutokset, ympäristökriisi/väestön ikärakenne.
+- **Jatkuvan oppimisen periaate** — kytkeytyy suoraan Paltan aiemmin löydettyyn havaintoon (kohtaanto-ongelma pahenee, jos osaamisen päivittämiseen ei ole rakenteita) — tässä muutettuna yksilötason kysymykseksi: mitä juuri minun pitäisi päivittää.
+
+**Tämä kerros on nimenomaan se, missä itsereflektio ja tilastotieto kohtaavat**, ja juuri tästä syystä se on pedagogisesti tiheämpi kuin B-kerros — ks. konkreettinen esimerkki alla.
+
+#### Konkreettinen sisältöesimerkki: "Oman osaamisen ajantasaisuus ja muutos"
+
+Tämä teema kokoaa yhteen kaiken kolme kerrosta ja havainnollistaa miten ne toimivat yhdessä yhden käyttäjäpolun sisällä:
+
+| Vaihe | Sisältö | Pedagoginen taso | Tietolaji |
+|---|---|---|---|
+| 1 | "Mitä osaan tänään?" — nopea itsearviointi omasta ydinosaamisesta (linkittyy jo olemassa olevaan "Oman osaamisen sanoittaminen" -teemaan) | Orientoiva | A (pysyvä) |
+| 2 | "Mikä on muuttumassa?" — tiivistetty poiminta Sitran megatrendeistä, käännettynä kysymykseksi "koskeeko tämä minun alaani" | Orientoiva → syventävä | C (hitaasti vanheneva) |
+| 3 | "Miltä oma alani näyttää juuri nyt?" — KEHA:n Työvoimabarometrin/kohtaanto-tiedon poiminta omalta alalta | Syventävä | B (nopeasti vanheneva) |
+| 4 | "Mitä tästä seuraa minulle?" — itsereflektiotehtävä, jossa käyttäjä yhdistää edelliset kolme: onko oma osaaminen ajan tasalla, mistä pitäisi päivittää, ja miten se liittyy omaan ammatilliseen uraan pidemmällä aikavälillä | **Soveltava** | Ei tilastoa — puhtaasti reflektio |
+
+**Miksi vaihe 4 on pedagogisesti keskeisin, kuten itsekin totesit:** Se on ainoa vaihe, joka ei tuo mitään uutta tietoa — se pyytää käyttäjää yhdistämään jo nähdyn tiedon omaan tarinaansa. Tämä on juuri se kohta, jossa toiveikkuusteorian "toimijuus"-ulottuvuus (usko omaan kykyyn vaikuttaa) rakentuu, ei tiedon vastaanottamisessa vaan sen soveltamisessa itseen. Sama rakenne (orientoiva → syventävä → soveltava) toimii mallina muillekin vastaaville teemoille, ei vain tälle yhdelle.
+
+**Huomio persoonia vasten:** Tämä teema toimii eri tavalla eri persoonille — Satulle (kokenut, mutta usko horjunut) vaihe 4 on todennäköisesti kaikkein hyödyllisin; Mikalle (vasta aloittava) vaiheet 1–2 saattavat riittää aluksi, vaihe 4 kannattaa tarjota vasta myöhemmässä välitapaamisessa. Tämä on juuri esimerkki spiraalimallista käytännössä: sama teema, eri syvyys, valmentajan ajoittamana — ei kaikille kerralla.
+
+#### Käytännön sijoittelu suuntien sisällä
+
+| Liikkeen suunta | B-kerroksen sisältö | C-kerroksen sisältö |
+|---|---|---|
+| Työllistyminen | Työvoimabarometri + kohtaanto-osiot omalta/kiinnostavalta toimialalta | Megatrendit suodatettuna oman alan kannalta relevantteihin (esim. tekoäly, ei välttämättä väestörakenne) |
+| Opiskeluun ohjaus | Työvoimabarometrin koulutustarve-ennusteet, ei kohtaanto-osiota (ei vielä relevantti) | Sama, painotus jatkuvan oppimisen/koulutuspolkujen näkökulmasta |
+| Osallisuus / muu askel | Ei välttämättä tarvitse tätä kerrosta lainkaan — ks. Reijo-persoona, jolle työmarkkinatilanne ei ole tavoitteen kannalta keskeinen | Voi silti olla relevanttia yleisen muutosymmärryksen kannalta, mutta ilman työmarkkinakytköstä |
+
+Tämä on itsessään esimerkki suunnan mukaan suodattamisesta: sama teema ei automaattisesti kuulu kaikkiin suuntiin.
+
+---
+
+### 2. Pedagoginen eteneminen — ilman pakotettua järjestystä
+
+Tämä on tärkeä täsmennys aiempaan periaatteeseen. "Ei pakotettua järjestystä" tarkoittaa, ettei **alusta** lukitse etenemisjärjestystä. Se ei tarkoita, ettei etenemisellä saisi olla pedagogista logiikkaa — logiikka vain asuu eri paikassa kuin luulisi.
+
+#### Missä pedagoginen eteneminen oikeasti tapahtuu
+
+Palvelupolun (`palvelupolku.md`) ja työnkulun (`tyonkulku.md`) rakenteesta löytyy jo vastaus, mutta sitä ei ole aiemmin nimetty ääneen: **eteneminen on valmentajan kantama, ei alustan kantama.**
+
+| Vaihe | Mitä pedagogisesti tapahtuu | Kuka kantaa sen |
+|---|---|---|
+| Aloitustapaaminen | Valmentaja suosittelee 2–4 aloitussisältöä — nämä valitaan tarkoituksella yksinkertaisemmasta päästä | Valmentaja |
+| Itsenäinen eteneminen | Asiakas etenee vapaasti valittujen suositusten sisällä | Asiakas |
+| Välitapaaminen | Valmentaja arvioi mitä on käyty, ja **päivittää suosituksia syvemmälle tai toiseen suuntaan** sen perusteella mitä asiakas on jo omaksunut | Valmentaja |
+| Siirtymätapaaminen | Painopiste siirtyy teoriasta käytäntöön (siirtymämoduuli) | Valmentaja |
+
+Tämä on **spiraalimalli** (Brunerin spiraalikurssin periaate), ei lineaarinen polku: samaan teemaan (esim. minäpystyvyys) voidaan palata useammassa tapaamisessa yhä syvemmällä tasolla, mutta koskaan lukitsematta seuraavaa askelta yhteen ainoaan reittiin. Sama koskee B-kerroksen työmarkkinatietoa: aloitustapaamisessa voi riittää yleiskuva ("miltä oma alasi näyttää juuri nyt"), välitapaamisessa voidaan mennä kohtaanto-ongelman yksityiskohtiin jos se on relevanttia.
+
+**Käytännön seuraus:** `SISALTOMODUULI`-tietomalliin kannattaa lisätä kolmas kenttä:
+
+| Kenttä | Tarkoitus |
+|---|---|
+| `pedagoginen_taso` | Kevyt merkintä (esim. "orientoiva" / "syventävä" / "soveltava") — **ei sama asia kuin taso-kenttä** (matala kynnys/syventävä). Taso kuvaa muotoa (kuinka helppoa lukea), pedagoginen taso kuvaa missä kohtaa spiraalia sisältö tyypillisesti istuu. Tämä on valmentajan tukimerkintä suositusta varten, ei käyttäjää rajoittava lukko. |
+
+**Miksi tämä ero on tärkeä:** "Taso" (matala kynnys/syventävä) ja "pedagoginen taso" (orientoiva/syventävä/soveltava) voivat helposti sekoittua keskenään, koska molemmissa on sana "syventävä". Ne vastaavat kuitenkin eri kysymyksiin — ensimmäinen: *miten sisältö on esitetty*, toinen: *missä kohtaa oppimisen kaarta se tyypillisesti sijaitsee*. Sekoittaminen johtaisi siihen, että valmentaja alkaisi tulkita "syventävä"-tasoa väärin pakollisena seuraavana askeleena.
+
+**Neljäs, viestinnällinen riski — taso on tehtäväkohtainen, ei henkilökohtainen:** Sama asiakas voi olla "syventävä" yhdessä teemassa (oma substanssiosaaminen) ja "matala kynnys" toisessa (esim. some-näkyvyys, jota ei ole koskaan harjoitellut) — tilannejohtamisen (SLII) mallin tapaan kehitystaso on aina sidottu tehtävään, ei koko henkilöön. Tämä ei vaadi muutosta tietomalliin (taso on jo kiinnitetty moduuliin), mutta vaatii huomiota puhetavassa: valmentajan ja käyttöliittymän kannattaa sanoittaa taso aina tehtäväkohtaisesti ("tässä teemassa aloitetaan kevyesti"), ei henkilöä luokittelevana ("olet aloittelija") — muuten riski on juuri se, mitä Satu-persoona pelkää: asiantuntijaidentiteetin aliarvioiminen yhden osa-alueen perusteella.
+
+#### Mitä tämä EI muuta aiemmin tehdyssä
+
+- Ei muuta persoonia, palvelupolkua, työnkulkua tai React-sovellusta rakenteellisesti — `pedagoginen_taso` on lisäkenttä dataan, ei uusi käyttöliittymän pakko-ominaisuus.
+- Ei tarkoita, että alusta alkaisi "lukita" mitään — merkintä on vain valmentajan suositustyön apuväline, näkyy tarvittaessa valmentajan yhteenvetonäkymässä, ei asiakkaan kortteina.
+
+---
+
+### 3. Osallisuus ja toimijuus — identiteetin ylläpito laajassa vs. suppeassa ympäristössä
+
+Tämä täydentää toiveikkuusteoriaa (goals–pathways–agency) toisesta suunnasta: ei vain miten yksilö tavoittelee tiettyä päämäärää, vaan miten hänen identiteettinsä ja motivaationsa ylipäätään pysyy pystyssä prosessin aikana. THL:n osallisuustutkimus antaa tälle suoran, validoidun teoriapohjan.
+
+**THL:n osallisuusindikaattori (ESIS)** mittaa osallisuuden kokemusta kolmella ulottuvuudella: kuuluvuuden tunne, tekemisen merkityksellisyys, sekä toimintamahdollisuudet/hallittavuus. **Tämä vastaa lähes suoraan alustan jo käyttämää kolmen kysymyksen mittaria** (koettu vaikutusmahdollisuus / kuulluksi tuleminen / konkreettinen seuraava askel) — kyse ei ole sattumasta, vaan samasta teoreettisesta perheestä. Tämä on hyvä uutinen: olemassa oleva mittari on jo linjassa validoidun kansallisen mallin kanssa.
+
+**⚠️ Yksi tärkeä rajoitus:** THL:n virallinen Osallisuusindikaattori on tieteellisesti validoitu vain tarkassa, muuttamattomassa sanamuodossaan — sen väittämiä ei saa muokata ja kutsua edelleen "osallisuusindikaattoriksi". Alustan kolmen kysymyksen mittari on siis oma, siitä inspiroitunut sovellus, ei sama mittari — tämä kannattaa pitää selvänä sekä sisällössä että mahdollisessa raportoinnissa, ettei synny virheellistä vaikutelmaa validoidun mittarin käytöstä.
+
+**"Laaja vs. suppea" -periaate:** THL:n osallisuusmateriaali erottaa laajan osallisuustoiminnan (avoin kaikille, tapahtuu siellä missä ihmiset jo viettävät aikaansa — koti, naapurusto, harrastukset) ja suppean, tarkasti kohdennetun toiminnan (rajattu kohderyhmä, nimetty koordinoiva taho). Sovellettuna työnhakijan tilanteeseen: **identiteetti, joka nojaa vain yhteen kapeaan ympäristöön (esim. pelkkä "työnhakija"-rooli) on hauraampi kuin identiteetti, joka rakentuu useasta yhteisöstä** (perhe, harrastukset, kaveripiiri, mahdollinen vapaaehtoistyö) — koska kapeassa tapauksessa työttömyys uhkaa koko identiteettiä, laajassa tapauksessa vain yhtä sen osaa.
+
+**Suora seuraus alustan sisältöön:** Tämä perustelee teoreettisesti sen, miksi "osallisuus"-liikkeen suunta ei ole jäännöskategoria (ks. Reijo-persoona) vaan yhtä täysipainoinen kuin työllistyminen — ja miksi kaikissa suunnissa kannattaisi olla ainakin kevyt sisältö, joka rohkaisee tunnistamaan ja vahvistamaan muitakin identiteetin lähteitä kuin työnhakua itseään. Tämä ei tarkoita uutta erillistä teemaa, vaan pientä lisäystä jo suunniteltuun itsereflektiorakenteeseen (vaihe 4, "soveltava" taso, ks. yllä): kysymys "mihin muihin yhteisöihin/rooleihin kuulut juuri nyt" voi olla osa samaa reflektiota kuin oman osaamisen ja muutoksen pohdinta.
+
+---
+
+### 4. Mitä tämä dokumentti ei vielä ratkaise
+
+- Mistä tarkkaan ottaen KEHA/Palta-sisältö haetaan alustalle (manuaalinen päivitys vs. jokin syöte/rajapinta) — todennäköisesti manuaalinen, koska julkaisutahti on harva (vuosittain/kuukausittain)
+- Kuka vastaa B-kerroksen sisällön päivittämisestä käytännössä (sisällöntuotannon organisoinnista puhuttiin aiemmin, tämä on yksi konkreettinen tehtävä sille)
+
+---
+
+## 9. Benchmark: Live-säätiön digitaalinen työhönvalmennus (Howspace)
+
+*Havainnot perustuvat omakohtaiseen kokemukseen Live-säätiön (Helsinki/Uusimaa) työhönvalmennuksesta, jota toteutetaan Howspace-alustalla. Täydentää syväanalyysin markkinakatsausta (kysymys 4) käytännön esimerkillä.*
+
+---
+
+### 1. Rakenne
+
+- **Kiinteä, numeroitu vaiheistus:** "Työhönvalmennuksen pyramidi" (5 tasoa: Tavoitteet & voimavarat → Osaaminen → Työnhaun asiakirjat → Verkostoituminen → Haastattelu). Sivulla lukee suoraan: *"Pyramidi rakentuu siten, että pohjimmaisina olevat asiat auttavat sinua ylempien kerrosten teemoissa. Siksi suosittelemmekin, että etenet järjestyksessä."*
+- **ProTips-ohjeistus vahvistaa saman:** *"Hyödynnä kaikki materiaalit – tee tehtävät järjestyksessä, ne rakentavat kokonaisuuden."*
+- **Suunnan mukainen erottelu on osittainen ja epäjohdonmukainen, ei täysin puuttuva.** "Valmennuksen vaiheet" -valikko (tarkempi kuin pyramidikuva) paljastaa, että keskivaiheessa työ ja opiskelu erotetaan omiksi kohdikseen ("Työnhaun asiakirjat ja mahdollisuudet" / "Opiskelun asiakirjat ja mahdollisuudet"), mutta alku- (Tavoitteet, Osaaminen) ja loppupäässä (Urasuunnittelu/ammatinvalinta, Haastattelu, Työhön TAI opintoihin siirtyminen) sisältö on yhdistetty samaan otsikkoon molemmille suunnille. Erottelu siis vaihtelee vaiheittain, ei ole johdonmukainen periaate.
+- **Ei tasoerottelua sisällössä:** Vahvuuslistat (osaamis-, luonne-, arvo-, työskentelytapavahvuudet) ovat 15–20 kohdan yhteislistoja kaikille käyttäjille samanlaisina.
+
+**➜ Suora vahvistus syväanalyysin päätelmälle:** kiinteä, pakotettu polku ja rajaamaton sisältömäärä ovat käytännössä koettu ongelma ("sekava ja tolkuttoman laaja"), ei vain kirjallisuudesta pääteltyä. Suunnan mukainen erottelu on kuitenkin osittain olemassa Livellä — ero omaan malliimme on johdonmukaisuudessa (kaikki sisältö suodattuu suunnan mukaan) ja siinä, että tasoerottelu puuttuu Liveltä kokonaan.
+
+---
+
+### 2. Menetelmät
+
+- Sisältö perustuu yleisiin 1–5 Likert-asteikkoihin ("kuinka vahvoiksi koet...") ja avoimiin reflektiokysymyksiin.
+- **GAS, ReTeaming/MI, TMT tai vastaava strukturoitu menetelmä ei näy alustalla lainkaan** — nämä elävät ilmeisesti vain kasvokkaisessa valmennuksessa, irrallaan digitaalisesta osasta.
+
+**➜ Vahvistaa riskin, jonka nostimme esiin teoriapohja-dokumentissa:** kun menetelmää ei tietoisesti käännetä digitaaliseksi tueksi, se ei siirry sinne ollenkaan — syntyy kaksi erillistä, yhteensopimatonta maailmaa.
+
+---
+
+### 3. Kaksi asiaa, jotka toimivat hyvin — syytä ottaa mallia
+
+1. **Oppimispäiväkirja-rakenne:** jokainen moduuli päättyy kahteen kysymykseen — "oletko valmis toimimaan" ja "mitä konkreettisesti aiot tehdä opitun pohjalta" — jotka kertyvät jatkuvaksi päiväkirjaksi läpi koko valmennuksen. Tämä vastaa lähes suoraan omaa "soveltava"-tason periaatettamme (ks. `teoriapohja_ja_pedagogiikka.md`, kohta oman osaamisen ajantasaisuus -esimerkki, vaihe 4).
+2. **Kategorisoitu sanasto reflektion tueksi:** neljä erillistä vahvuuskategoriaa (osaaminen/luonne/arvot/työskentelytavat) antaa käyttäjälle valmiin sanaston sen sijaan että pyytäisi keksimään vastauksen tyhjästä — tätä voisi soveltaa "Oman osaamisen sanoittaminen" -teemaamme, pilkkomalla se osiin yhden ison listan sijaan.
+
+---
+
+### 4. Yhteenveto: mitä tämä benchmark vahvistaa suunnitelmastamme
+
+| Havainto Livellä | Vastaava periaate omassa suunnitelmassa |
+|---|---|
+| Pakotettu, numeroitu eteneminen | Ei pakotettua järjestystä — vapaasti valittavat teemakortit |
+| Suunnan mukainen erottelu osittainen/epäjohdonmukainen | Kaikki sisältö suodattuu `liikkeen_suunta`-kentän mukaan, johdonmukaisesti |
+| Ei tasoerottelua, kaikille sama sisältö | Sama teema kahtena tasona (matala kynnys / syventävä) |
+| Menetelmät (jos niitä on) eivät näy digitaalisella puolella | Tietoinen malli: MI/TMT/GAS-yhteys suunniteltu erikseen jokaiseen työnkulkuun |
+| Oppimispäiväkirja toimii hyvin | Otettu mallia "soveltava"-tason reflektiorakenteeseen |
+
+---
+
+## 10. Yhteenveto ja seuraavat askeleet
 
 Tämä kehittämissuunnitelma kattaa alkuperäisen toimeksiannon tuotoslistan kokonaisuudessaan: prosessikuvauksen vaiheet, valmennustapahtuman sisällön, ydinprosessit, tiedonhallinnan mallin, toimintatavat, asiakkaan palvelupolun, prosessikaavion, käyttäjäpersoonat ja työnkulkukaavion.
 
