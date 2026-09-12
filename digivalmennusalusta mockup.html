@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digivalmennusalusta — asiakasnäkymä</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1EA;
+    --surface:#FFFFFF;
+    --ink:#22271F;
+    --ink-soft:#565F51;
+    --moss:#2F5D50;
+    --moss-dark:#1F4238;
+    --ochre:#B9812E;
+    --ochre-bg:#F6ECDA;
+    --sky:#5F86A0;
+    --sky-bg:#E7EEF1;
+    --line:#DDE2D6;
+    --done:#7C9473;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 80px;}
+
+  /* Header: liikkeen suunta */
+  .suunta-banner{
+    background:var(--moss);
+    color:#F4F1E8;
+    border-radius:18px;
+    padding:28px 26px;
+    margin-bottom:8px;
+  }
+  .suunta-label{
+    font-size:13px;
+    color:#BFD4C9;
+    margin:0 0 6px;
+    font-weight:500;
+  }
+  .suunta-title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:32px;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .suunta-sub{
+    margin:12px 0 0;
+    font-size:15px;
+    color:#D9E6DD;
+    max-width:46ch;
+  }
+  .suunta-meta{
+    display:flex;
+    gap:18px;
+    margin-top:18px;
+    font-size:13px;
+    color:#BFD4C9;
+  }
+
+  /* Oma eteneminen: ei janana vaan kokoelmana */
+  .etenee{
+    margin:26px 0 30px;
+  }
+  .etenee h2{
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin:0 0 12px;
+    text-transform:none;
+  }
+  .pisteet{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .piste{
+    width:34px;height:34px;
+    border-radius:10px;
+    background:var(--surface);
+    border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;
+    color:var(--line);
+    transition:all .25s ease;
+  }
+  .piste.done{
+    background:var(--done);
+    border-color:var(--done);
+    color:#F4F1E8;
+  }
+
+  /* Teemakortit: vapaa kokoelma, ei numerointia */
+  .teemat{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .kortti{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px 20px 18px;
+    flex:1 1 300px;
+    cursor:pointer;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .kortti:hover{border-color:var(--moss);}
+  .kortti.open{border-color:var(--moss); box-shadow:0 2px 0 var(--moss);}
+  .kortti-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .kortti h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:19px;
+    margin:0;
+    color:var(--ink);
+  }
+  .muoto{
+    font-size:12px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    padding-top:3px;
+  }
+  .kortti p.kuvaus{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:8px 0 0;
+  }
+  .valmis-merkki{
+    font-size:12px;
+    color:var(--done);
+    font-weight:600;
+    margin-top:10px;
+    display:none;
+  }
+  .valmis-merkki.show{display:block;}
+
+  .sisalto{
+    display:none;
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .sisalto.show{display:block;}
+
+  .tasot{
+    display:flex;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .taso-btn{
+    font-family:inherit;
+    font-size:13px;
+    font-weight:500;
+    padding:7px 14px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .taso-btn.active[data-taso="matala"]{
+    background:var(--sky-bg);
+    border-color:var(--sky);
+    color:#2E4A57;
+  }
+  .taso-btn.active[data-taso="syventava"]{
+    background:var(--ochre-bg);
+    border-color:var(--ochre);
+    color:#6E4B18;
+  }
+  .taso-teksti{
+    font-size:14px;
+    color:var(--ink);
+    margin:0 0 14px;
+  }
+  .toiminnot{
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+  .merkitse{
+    font-family:inherit;
+    font-size:13px;
+    font-weight:600;
+    padding:9px 16px;
+    border-radius:10px;
+    border:none;
+    background:var(--moss);
+    color:#F4F1E8;
+    cursor:pointer;
+  }
+  .merkitse.done{
+    background:var(--done);
+  }
+  .jarjestys-huom{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:36px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  @media(max-width:480px){
+    .suunta-title{font-size:26px;}
+    .kortti{flex-basis:100%;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="suunta-banner">
+    <p class="suunta-label">Valittu liikkeen suunta — sovittu yhdessä valmentajan kanssa</p>
+    <h1 class="suunta-title">Työllistyminen</h1>
+    <p class="suunta-sub">Alla olevat teemat koskevat vain tätä suuntaa. Voit avata ne missä järjestyksessä haluat — mitään ei ole lukittu.</p>
+    <div class="suunta-meta">
+      <span>Laajuus: perus (5 tapaamista)</span>
+      <span>Seuraava tapaaminen: 24.9.</span>
+    </div>
+  </div>
+
+  <div class="etenee">
+    <h2>Oma eteneminen — ei tarvitse edetä järjestyksessä</h2>
+    <div class="pisteet" id="pisteet"></div>
+  </div>
+
+  <div class="teemat" id="teemat"></div>
+
+  <p class="jarjestys-huom">Valmentaja on suositellut sinulle 3 teemaa aloitukseksi (merkitty ★) — muut voit avata halutessasi. Et voi edetä väärässä järjestyksessä, koska järjestystä ei ole.</p>
+
+</div>
+
+<script>
+const teemat = [
+  {
+    id: 'cv',
+    suositeltu: true,
+    title: 'CV:n tekeminen',
+    muoto: '🎥 video + pohja',
+    kuvaus: 'Oman osaamisen ja kokemuksen kokoaminen selkeään muotoon.',
+    matala: 'Katso 4 minuutin video ja täytä valmis CV-pohja kohta kohdalta. Ei tarvitse kirjoittaa tyhjästä.',
+    syventava: 'Pohdi kirjallisesti: mitkä kolme asiaa aiemmasta työstäsi olisit itse ylpein kertomaan? Rakenna CV niiden ympärille, älä pelkän kronologian.'
+  },
+  {
+    id: 'haastattelu',
+    suositeltu: true,
+    title: 'Haastatteluun valmistautuminen',
+    muoto: '🎧 ääni + harjoitus',
+    kuvaus: 'Yleisimmät kysymykset ja oman vastauksen harjoittelu.',
+    matala: 'Kuuntele lyhyt äänite 5 yleisimmästä kysymyksestä ja niiden mallivastauksista.',
+    syventava: 'Nauhoita oma vastauksesi kysymykseen "kerro itsestäsi" ja kuuntele se itse kriittisesti — mitä jättäisit pois?'
+  },
+  {
+    id: 'osaaminen',
+    suositeltu: true,
+    title: 'Oman osaamisen sanoittaminen',
+    muoto: '📝 itsereflektio',
+    kuvaus: 'Mitä osaat, jota et ehkä ole ajatellut osaamiseksi.',
+    matala: 'Listaa 5 asiaa jotka teit edellisessä työssä hyvin — ei tarvitse arvottaa niitä vielä.',
+    syventava: 'Kirjoita lyhyt tarina yhdestä tilanteesta, jossa ratkaisit ongelman itsenäisesti. Tämä on jaettavissa valmentajalle vain jos itse haluat.'
+  },
+  {
+    id: 'kanavat',
+    suositeltu: false,
+    title: 'Työnhakukanavat',
+    muoto: '📄 teksti',
+    kuvaus: 'Mistä kannattaa etsiä avoimia paikkoja omalla alalla.',
+    matala: 'Lyhyt lista 5 kanavasta, joissa oman alan paikkoja julkaistaan eniten.',
+    syventava: 'Vertailu avointen ja piilotyöpaikkojen välillä — miten piilotyöpaikkoja lähestytään verkostojen kautta.'
+  },
+  {
+    id: 'somelinkedin',
+    suositeltu: false,
+    title: 'Oma some-näkyvyys',
+    muoto: '🎥 video',
+    kuvaus: 'Miten profiili kannattaa esittää, jos hakee alalle jossa sillä on merkitystä.',
+    matala: '3 minuutin video: kolme asiaa jotka kannattaa tarkistaa profiilista ensin.',
+    syventava: 'Profiilin sisällön suunnittelu oman erottautumisen näkökulmasta — ei vain oikeinkirjoitus vaan tarina.'
+  }
+];
+
+const teematEl = document.getElementById('teemat');
+const pisteetEl = document.getElementById('pisteet');
+const tila = {}; // id -> {avattu:bool, taso:'matala'|'syventava'}
+
+teemat.forEach(t => tila[t.id] = {avattu:false, taso:'matala'});
+
+function piirraPisteet(){
+  pisteetEl.innerHTML = '';
+  teemat.forEach(t=>{
+    const d = document.createElement('div');
+    d.className = 'piste' + (tila[t.id].avattu ? ' done' : '');
+    d.textContent = tila[t.id].avattu ? '✓' : '·';
+    d.title = t.title;
+    pisteetEl.appendChild(d);
+  });
+}
+
+function piirraKortti(t){
+  const kortti = document.createElement('div');
+  kortti.className = 'kortti';
+  kortti.id = 'kortti-' + t.id;
+  kortti.innerHTML = `
+    <div class="kortti-top">
+      <h3>${t.suositeltu ? '★ ' : ''}${t.title}</h3>
+      <span class="muoto">${t.muoto}</span>
+    </div>
+    <p class="kuvaus">${t.kuvaus}</p>
+    <p class="valmis-merkki" id="valmis-${t.id}">✓ Käyty läpi</p>
+    <div class="sisalto" id="sisalto-${t.id}">
+      <div class="tasot">
+        <button class="taso-btn active" data-taso="matala" onclick="vaihdaTaso(event,'${t.id}','matala')">Aloita helposti</button>
+        <button class="taso-btn" data-taso="syventava" onclick="vaihdaTaso(event,'${t.id}','syventava')">Syvenny</button>
+      </div>
+      <p class="taso-teksti" id="teksti-${t.id}">${t.matala}</p>
+      <div class="toiminnot">
+        <button class="merkitse" id="merkitse-${t.id}" onclick="merkitseValmiiksi(event,'${t.id}')">Merkitse käydyksi</button>
+      </div>
+    </div>
+  `;
+  kortti.addEventListener('click', (e)=>{
+    if(e.target.closest('.tasot') || e.target.closest('.merkitse')) return;
+    avaaSulje(t.id);
+  });
+  teematEl.appendChild(kortti);
+}
+
+function avaaSulje(id){
+  const sisalto = document.getElementById('sisalto-'+id);
+  const kortti = document.getElementById('kortti-'+id);
+  const nyt = sisalto.classList.toggle('show');
+  kortti.classList.toggle('open', nyt);
+  if(nyt && !tila[id].avattu){
+    tila[id].avattu = true;
+    piirraPisteet();
+  }
+}
+
+function vaihdaTaso(e, id, taso){
+  e.stopPropagation();
+  tila[id].taso = taso;
+  const t = teemat.find(x=>x.id===id);
+  document.getElementById('teksti-'+id).textContent = taso === 'matala' ? t.matala : t.syventava;
+  document.querySelectorAll('#kortti-'+id+' .taso-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.taso === taso);
+  });
+}
+
+function merkitseValmiiksi(e, id){
+  e.stopPropagation();
+  const btn = document.getElementById('merkitse-'+id);
+  const merkki = document.getElementById('valmis-'+id);
+  btn.classList.add('done');
+  btn.textContent = 'Käyty läpi ✓';
+  merkki.classList.add('show');
+}
+
+teemat.forEach(piirraKortti);
+piirraPisteet();
+</script>
+</body>
+</html>
