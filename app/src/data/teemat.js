@@ -60,6 +60,18 @@ export const teemat = [
       'Profiilin sisällön suunnittelu oman erottautumisen näkökulmasta — ei vain oikeinkirjoitus vaan tarina.',
   },
   {
+    id: 'osaamisen-ajantasaisuus',
+    suositeltu: false,
+    kategoria: 'taito',
+    title: 'Oman osaamisen ajantasaisuus ja muutos',
+    muoto: '📝 itsereflektio',
+    kuvaus: 'Mikä osaamisessasi on jo vahvaa, ja mikä maailma on muuttumassa ympärilläsi?',
+    matala:
+      'Kolme kysymystä: 1) Mitä osaat tänään joka on ollut hyödyksi? 2) Oletko huomannut jotain muuttuneen alallasi? 3) Onko jokin uusi taito tullut vastaan jota et vielä osaa?',
+    syventava:
+      'Sitran mukaan tekoäly, pidentyvä työelämä ja väestön ikääntyminen muokkaavat osaamistarpeita, mikä näkyy työmarkkinoiden kohtaanto-ongelmassa. Pohdi: mikä osaamisesi on yhtä arvokasta kuin ennen, mikä on kasvanut merkitykseltään, mitä olisi hyödyllistä oppia seuraavaksi.',
+  },
+  {
     id: 'miksi-nain',
     suositeltu: true,
     kategoria: 'voimavara',
