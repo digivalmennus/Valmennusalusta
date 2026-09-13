@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neljä polkua merkityksellisyyteen</title>
+<style>
+  body{margin:0;background:#F4F3EE;font-family:'Inter',sans-serif;display:flex;justify-content:center;padding:20px;}
+  svg{max-width:480px;width:100%;}
+  .box{fill:#fff;stroke-width:1.5;rx:12;}
+  .teal{stroke:#2F5D50;} .teal-fill{fill:#E4EFEA;}
+  .coral{stroke:#B4542A;} .coral-fill{fill:#F7E9E1;}
+  .purple{stroke:#4A3F8C;} .purple-fill{fill:#EAE7F7;}
+  .gold{stroke:#9A6B12;} .gold-fill{fill:#F6EBD3;}
+  .hub{fill:#2B2B27;stroke:#2B2B27;}
+  .th{font-size:16px;font-weight:700;fill:#22221F;}
+  .ts{font-size:12.5px;fill:#54534C;}
+  .hubtext{font-size:15px;font-weight:700;fill:#F5F3EC;}
+  .foot{font-size:12px;fill:#7A796F;font-style:italic;}
+  line{stroke:#B8B6AC;stroke-width:1.4;}
+</style>
+</head>
+<body>
+<svg viewBox="0 0 380 460" role="img" aria-label="Neljä rinnakkaista polkua merkityksellisyyteen: autonomia, kyvykkyys, yhteisöllisyys, hyvän tekeminen, jotka kaikki yhdistyvät keskellä olevaan merkityksellisyyteen ja hyvinvointiin. Ei pyramidia, ei järjestystä.">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#B8B6AC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <line x1="115" y1="98" x2="172" y2="195" marker-end="url(#arr)"/>
+  <line x1="265" y1="98" x2="208" y2="195" marker-end="url(#arr)"/>
+  <line x1="115" y1="362" x2="172" y2="265" marker-end="url(#arr)"/>
+  <line x1="265" y1="362" x2="208" y2="265" marker-end="url(#arr)"/>
+
+  <rect class="box teal teal-fill" x="20" y="55" width="180" height="60" rx="12"/>
+  <text class="th" x="110" y="78" text-anchor="middle">Autonomia</text>
+  <text class="ts" x="110" y="98" text-anchor="middle">Oma tahti, omat valinnat</text>
+
+  <rect class="box coral coral-fill" x="200" y="55" width="180" height="60" rx="12"/>
+  <text class="th" x="290" y="78" text-anchor="middle">Kyvykkyys</text>
+  <text class="ts" x="290" y="98" text-anchor="middle">Onnistumisen kokemukset</text>
+
+  <rect class="box purple purple-fill" x="20" y="345" width="180" height="60" rx="12"/>
+  <text class="th" x="110" y="368" text-anchor="middle">Yhteisöllisyys</text>
+  <text class="ts" x="110" y="388" text-anchor="middle">Valmentaja ja muut rinnalla</text>
+
+  <rect class="box gold gold-fill" x="200" y="345" width="180" height="60" rx="12"/>
+  <text class="th" x="290" y="368" text-anchor="middle">Hyvän tekeminen</text>
+  <text class="ts" x="290" y="388" text-anchor="middle">Oma edistyminen auttaa muitakin</text>
+
+  <circle class="hub" cx="190" cy="230" r="65"/>
+  <text class="hubtext" x="190" y="222" text-anchor="middle">Merkityksellisyys</text>
+  <text class="hubtext" x="190" y="242" text-anchor="middle">&amp; hyvinvointi</text>
+
+  <text class="foot" x="190" y="430" text-anchor="middle">Neljä yhtä tärkeää polkua — ei järjestystä, ei hierarkiaa</text>
+  <text class="foot" x="190" y="445" text-anchor="middle">(Ryan &amp; Deci; Martela &amp; Ryan 2016; Martela &amp; Riekki 2018)</text>
+</svg>
+</body>
+</html>
