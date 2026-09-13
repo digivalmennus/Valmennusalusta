@@ -110,3 +110,7 @@ export const teemat = [
       'Reissin teorian mukaan kaikilla on samat 16 perustarvetta, mutta eri painotuksin. Tunnista 2-3 vahvinta ja pohdi miten ne näkyvät elämässäsi/työssäsi. Ei ole oikeaa profiilia — vältä olettamasta oman profiilisi olevan kaikille paras.',
   },
 ]
+
+export function teemaOtsikko(id) {
+  return teemat.find((t) => t.id === id)?.title ?? id
+}

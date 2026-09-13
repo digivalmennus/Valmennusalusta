@@ -1,7 +1,19 @@
 import NeljaPolkuaKaavio from './NeljaPolkuaKaavio'
+import Itsereflektio from './Itsereflektio'
 
-export default function TeemaKortti({ teema, tila, onToggleOpen, onChangeTaso, onMerkitse }) {
+export default function TeemaKortti({
+  teema,
+  tila,
+  onToggleOpen,
+  onChangeTaso,
+  onMerkitse,
+  reflektio,
+  onReflektioChange,
+  onReflektioTallenna,
+  onReflektioJaa,
+}) {
   const teksti = tila.taso === 'matala' ? teema.matala : teema.syventava
+  const onItsereflektio = teema.muoto.includes('itsereflektio')
 
   return (
     <div
@@ -46,6 +58,19 @@ export default function TeemaKortti({ teema, tila, onToggleOpen, onChangeTaso, o
             </button>
           </div>
           <p className="taso-teksti">{teksti}</p>
+
+          {onItsereflektio && reflektio && (
+            <Itsereflektio
+              moduuliId={teema.id}
+              teksti={reflektio.teksti}
+              tallennettu={reflektio.tallennettu}
+              jaettu={reflektio.jaettu}
+              onTekstiChange={(teksti) => onReflektioChange(teema.id, teksti)}
+              onTallenna={() => onReflektioTallenna(teema.id)}
+              onJaa={() => onReflektioJaa(teema.id)}
+            />
+          )}
+
           <div className="toiminnot">
             <button
               type="button"

@@ -32,6 +32,309 @@ body {
   padding: 28px 20px 80px;
 }
 
+/* Ylä­palkki: kirjautuneen käyttäjän sähköposti + uloskirjautuminen */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.kirjaudu-ulos {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.kirjaudu-ulos:hover {
+  border-color: var(--moss);
+  color: var(--moss);
+}
+
+/* Kirjautuminen / rekisteröityminen */
+.auth-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+}
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 380px;
+}
+.auth-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 20px;
+  text-align: center;
+  color: var(--moss-dark);
+}
+.auth-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+.auth-tab {
+  flex: 1;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.auth-tab.active {
+  background: var(--surface);
+  color: var(--moss-dark);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.auth-field input {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.auth-rooli {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.auth-rooli legend {
+  font-weight: 600;
+  padding: 0 4px;
+}
+.auth-virhe {
+  font-size: 13px;
+  color: #a3402f;
+  margin: 0;
+}
+.auth-viesti {
+  font-size: 13px;
+  color: var(--moss-dark);
+  margin: 0;
+}
+.auth-submit {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--moss);
+  color: #f4f1e8;
+  cursor: pointer;
+}
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Itsereflektio: tallennus + eksplisiittinen jakaminen valmentajalle */
+.itsereflektio {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.itsereflektio-label {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.itsereflektio-teksti {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+.itsereflektio-toiminnot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.itsereflektio-tallenna {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--moss);
+  background: var(--surface);
+  color: var(--moss-dark);
+  cursor: pointer;
+}
+.itsereflektio-jaa {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.itsereflektio-jaa:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.itsereflektio-tila {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+.itsereflektio-jaettu {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--done);
+}
+
+/* Valmentajan näkymä */
+.valmentaja-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px 20px 80px;
+}
+.valmentaja-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0 0 20px;
+  color: var(--moss-dark);
+}
+.valmentaja-tyhja {
+  color: var(--ink-soft);
+}
+.asiakaslista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.asiakas-kortti {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 22px;
+}
+.asiakas-kortti h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  color: var(--ink);
+}
+.asiakas-email {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+}
+.asiakas-ei-etenemista {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 12px 0 0;
+}
+.asiakas-moduulit {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.asiakas-moduulit li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+.moduuli-nimi {
+  flex: 1;
+  color: var(--ink);
+}
+.moduuli-taso {
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: var(--sky-bg);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.moduuli-valmis {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--done);
+}
+.asiakas-jaetut {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.jaettu-rivi {
+  background: var(--ochre-bg);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.jaettu-otsikko {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6e4b18;
+  margin: 0 0 4px;
+}
+.jaettu-sisalto {
+  font-size: 13.5px;
+  color: var(--ink);
+  margin: 0;
+  white-space: pre-wrap;
+}
+
 /* Header: liikkeen suunta */
 .suunta-banner {
   background: var(--moss);
