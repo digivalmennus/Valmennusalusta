@@ -169,6 +169,20 @@ body {
   display: block;
 }
 
+.kaavio-wrap {
+  background: #f4f3ee;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+.kaavio-wrap svg {
+  max-width: 360px;
+  width: 100%;
+  height: auto;
+}
+
 .tasot {
   display: flex;
   gap: 8px;

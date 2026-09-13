@@ -1,3 +1,5 @@
+import NeljaPolkuaKaavio from './NeljaPolkuaKaavio'
+
 export default function TeemaKortti({ teema, tila, onToggleOpen, onChangeTaso, onMerkitse }) {
   const teksti = tila.taso === 'matala' ? teema.matala : teema.syventava
 
@@ -18,6 +20,7 @@ export default function TeemaKortti({ teema, tila, onToggleOpen, onChangeTaso, o
 
       {tila.avoinna && (
         <div className="sisalto show">
+          {teema.id === 'miksi-nain' && <NeljaPolkuaKaavio />}
           <div className="tasot">
             <button
               type="button"
