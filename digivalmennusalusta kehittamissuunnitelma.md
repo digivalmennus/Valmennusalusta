@@ -688,6 +688,7 @@ Tämä on **spiraalimalli** (Brunerin spiraalikurssin periaate), ei lineaarinen 
 | Kenttä | Tarkoitus |
 |---|---|
 | `pedagoginen_taso` | Kevyt merkintä (esim. "orientoiva" / "syventävä" / "soveltava") — **ei sama asia kuin taso-kenttä** (matala kynnys/syventävä). Taso kuvaa muotoa (kuinka helppoa lukea), pedagoginen taso kuvaa missä kohtaa spiraalia sisältö tyypillisesti istuu. Tämä on valmentajan tukimerkintä suositusta varten, ei käyttäjää rajoittava lukko. |
+| `kategoria` | **"taito" / "voimavara"** — erottaa opittavat, tekemiseen liittyvät sisällöt (CV, haastattelu, kanavat) sisäisistä/sosiaalisista resursseista, jotka kannattelevat prosessin yli (toiveikkuus, tukiverkosto, motivaatioprofiili). Tämä ei ole sama jako kuin pedagoginen taso — molempia kategorioita löytyy kaikilta pedagogisilta tasoilta. Syntyi havainnosta, että Liven "Voimavarat"-osio (pyramidin pohjataso) sekoittaa nämä kaksi (esim. digitaidot ja päivärytmi nimettynä "voimavaroiksi", vaikka ne ovat opittavia taitoja) — tämä sekaannus voi johtaa siihen, että valmentaja tulkitsee osaamisvajeen väärin motivaatio-/uskovajeeksi tai päinvastoin (ks. SLII-huomio yllä). |
 
 **Miksi tämä ero on tärkeä:** "Taso" (matala kynnys/syventävä) ja "pedagoginen taso" (orientoiva/syventävä/soveltava) voivat helposti sekoittua keskenään, koska molemmissa on sana "syventävä". Ne vastaavat kuitenkin eri kysymyksiin — ensimmäinen: *miten sisältö on esitetty*, toinen: *missä kohtaa oppimisen kaarta se tyypillisesti sijaitsee*. Sekoittaminen johtaisi siihen, että valmentaja alkaisi tulkita "syventävä"-tasoa väärin pakollisena seuraavana askeleena.
 
@@ -733,6 +734,7 @@ Tämä täydentää toiveikkuusteoriaa (goals–pathways–agency) toisesta suun
 - **ProTips-ohjeistus vahvistaa saman:** *"Hyödynnä kaikki materiaalit – tee tehtävät järjestyksessä, ne rakentavat kokonaisuuden."*
 - **Suunnan mukainen erottelu on osittainen ja epäjohdonmukainen, ei täysin puuttuva.** "Valmennuksen vaiheet" -valikko (tarkempi kuin pyramidikuva) paljastaa, että keskivaiheessa työ ja opiskelu erotetaan omiksi kohdikseen ("Työnhaun asiakirjat ja mahdollisuudet" / "Opiskelun asiakirjat ja mahdollisuudet"), mutta alku- (Tavoitteet, Osaaminen) ja loppupäässä (Urasuunnittelu/ammatinvalinta, Haastattelu, Työhön TAI opintoihin siirtyminen) sisältö on yhdistetty samaan otsikkoon molemmille suunnille. Erottelu siis vaihtelee vaiheittain, ei ole johdonmukainen periaate.
 - **Ei tasoerottelua sisällössä:** Vahvuuslistat (osaamis-, luonne-, arvo-, työskentelytapavahvuudet) ovat 15–20 kohdan yhteislistoja kaikille käyttäjille samanlaisina.
+- **"Voimavarat"-käsite sekoittuu taitoihin:** pyramidin pohjataso ("Tavoitteet ja voimavarat") sisältää digitaidot ja päivän rytmittämisen — nämä ovat opittavia taitoja, eivät psykologisia/sosiaalisia voimavaroja (toiveikkuus, tukiverkosto, motivaatio). Sekaannus on käsitteellinen, ei vain sanavalinta: se voi johtaa siihen, että osaamisvaje tulkitaan väärin motivaatiovajeeksi tai päinvastoin.
 
 **➜ Suora vahvistus syväanalyysin päätelmälle:** kiinteä, pakotettu polku ja rajaamaton sisältömäärä ovat käytännössä koettu ongelma ("sekava ja tolkuttoman laaja"), ei vain kirjallisuudesta pääteltyä. Suunnan mukainen erottelu on kuitenkin osittain olemassa Livellä — ero omaan malliimme on johdonmukaisuudessa (kaikki sisältö suodattuu suunnan mukaan) ja siinä, että tasoerottelu puuttuu Liveltä kokonaan.
 
@@ -763,6 +765,7 @@ Tämä täydentää toiveikkuusteoriaa (goals–pathways–agency) toisesta suun
 | Ei tasoerottelua, kaikille sama sisältö | Sama teema kahtena tasona (matala kynnys / syventävä) |
 | Menetelmät (jos niitä on) eivät näy digitaalisella puolella | Tietoinen malli: MI/TMT/GAS-yhteys suunniteltu erikseen jokaiseen työnkulkuun |
 | Oppimispäiväkirja toimii hyvin | Otettu mallia "soveltava"-tason reflektiorakenteeseen |
+| "Voimavarat" sekoittuu taitoihin (digitaidot, päivärytmi) | Oma `kategoria`-kenttä (taito/voimavara) erottaa nämä tietoisesti toisistaan |
 
 ---
 
